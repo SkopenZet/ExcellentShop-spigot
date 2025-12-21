@@ -3,6 +3,7 @@ package su.nightexpress.excellentshop.integration.claim;
 import com.google.common.eventbus.Subscribe;
 import com.plotsquared.core.PlotAPI;
 import com.plotsquared.core.events.PlotClearEvent;
+import com.plotsquared.core.events.PlotDeleteEvent;
 import com.plotsquared.core.location.Location;
 import com.plotsquared.core.plot.Plot;
 import com.plotsquared.core.plot.PlotArea;
@@ -40,9 +41,16 @@ public class PlotSquaredClaimHook implements ClaimHook {
 
     @Subscribe
     public void onPlotClear(PlotClearEvent event) {
-        Plot plot = event.getPlot();
+        this.clearPlotShops(event.getPlot());
+    }
 
-        World world = Optional.ofNullable(event.getWorld()).map(Bukkit::getWorld).orElse(null);
+    @Subscribe
+    public void onPlotDelete(PlotDeleteEvent event) {
+        this.clearPlotShops(event.getPlot());
+    }
+
+    private void clearPlotShops(@NotNull Plot plot) {
+        World world = Optional.ofNullable(plot.getWorldName()).map(Bukkit::getWorld).orElse(null);
         if (world == null) return;
 
         plot.getRegions().forEach(cuboidRegion -> {

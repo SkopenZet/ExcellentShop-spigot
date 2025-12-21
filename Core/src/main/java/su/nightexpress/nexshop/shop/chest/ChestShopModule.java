@@ -477,6 +477,7 @@ public class ChestShopModule extends AbstractModule implements ShopModule, Playe
         this.productsMenu.open(player, shop);
     }
 
+    @Deprecated
     public void openAdvancedPriceMenu(@NotNull Player player, @NotNull ChestProduct product) {
         this.priceMenu.open(player, product);
     }
@@ -604,6 +605,9 @@ public class ChestShopModule extends AbstractModule implements ShopModule, Playe
     public void interactShop(@NotNull PlayerInteractEvent event, @NotNull Player player, @NotNull ChestShop shop) {
         //if (event.useInteractedBlock() == Event.Result.DENY) return;
         if (event.getAction() != Action.RIGHT_CLICK_BLOCK) return;
+
+        // Added to avoid "interaction blocked" messages from protection plugins.
+        event.setCancelled(true);
 
         if (player.isSneaking()) {
             ItemStack item = event.getItem();
@@ -741,10 +745,10 @@ public class ChestShopModule extends AbstractModule implements ShopModule, Playe
 
         this.createShop(player, block, shop -> {
             ItemStack hand = new ItemStack(player.getInventory().getItemInMainHand());
-            if (!ChestUtils.isShopItem(hand)) {
+            if (!ChestUtils.isShopItem(hand) && !hand.getType().isAir() && !shop.isProduct(hand) && ChestUtils.isAllowedItem(hand)) {
                 ChestProduct product = shop.createProduct(player, hand, false);
                 if (product != null) {
-                    product.setPricing(FlatPricing.of(buyPrice, sellPrice));
+                    product.setPricing(FlatPricing.of(ChestUtils.clampPrice(buyPrice), ChestUtils.clampPrice(sellPrice)));
                     product.updatePrice(false);
                 }
             }
@@ -771,7 +775,7 @@ public class ChestShopModule extends AbstractModule implements ShopModule, Playe
         shop.setBuyingAllowed(true);
         shop.setSellingAllowed(true);
         if (ChestConfig.isRentEnabled()) {
-            shop.setRentSettings(new RentSettings(false, 7, CurrencyId.VAULT, 1000));
+            shop.setRentSettings(new RentSettings(false, 7, this.getDefaultCurrency().getInternalId(), 1000));
         }
 
         consumer.accept(shop);

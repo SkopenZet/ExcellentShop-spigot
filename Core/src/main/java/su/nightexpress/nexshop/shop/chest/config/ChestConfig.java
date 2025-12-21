@@ -154,6 +154,12 @@ public class ChestConfig {
         "Sets whether or not players can create shops in their own claims only.",
         "Supported Plugins: https://nightexpressdev.com/excellentshop/chest/claim-integrations/");
 
+    public static final ConfigValue<Double> PRODUCT_MAX_PRICE = ConfigValue.create("Shops.Products.Max-Price",
+        10_000_000D,
+        "Max. possible price value players can set for selling and buying.",
+        "Set -1 to disable."
+    );
+
     public final static ConfigValue<RankMap<Integer>> SHOP_PRODUCTS_MAX_PER_RANK = ConfigValue.create("Shops.Products.Max_Products_Per_Shop",
         (cfg, path, rank) -> RankMap.read(cfg, path, Integer.class, 3),
         (cfg, path, map) -> map.write(cfg, path),

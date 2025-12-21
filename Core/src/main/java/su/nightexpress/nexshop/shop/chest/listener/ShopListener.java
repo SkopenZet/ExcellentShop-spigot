@@ -112,7 +112,7 @@ public class ShopListener extends AbstractListener<ShopPlugin> {
 
     // TODO Update stock cache on container close
 
-    @EventHandler(priority = EventPriority.HIGHEST)
+    @EventHandler(priority = EventPriority.NORMAL)
     public void onShopInteract(PlayerInteractEvent event) {
         Block block = event.getClickedBlock();
         if (block == null) return;

@@ -365,6 +365,7 @@ public class ChestShop extends AbstractShop<ChestProduct> implements PlayerShop 
 
     @Nullable
     public ChestProduct createProduct(@NotNull Player player, @NotNull ItemStack item, boolean bypassHandler) {
+        // TODO Should throw exception
         if (item.getType().isAir() || this.isProduct(item)) {
             return null;
         }
