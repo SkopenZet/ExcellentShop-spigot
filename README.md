@@ -52,8 +52,8 @@ It includes **GUI Shop** (with Rotations), **Chest Shop** and **Auction House**.
 - [**Auction**](https://nightexpressdev.com/excellentshop/auction/overview). Allow players to trade items on the global server marketplace!
   - **Categories**. Filter items on the auction with fully customizable item categories!
   - **Sorting**. Sort items on the auction by their price, date, owner, type and name!
-  - **Notifications**. Notify players about sold, expired and unclaimed listings!
-  - **Announcements**. Broadcast a message when new listing is added on the auction!
+  - **Notifications**. Notify players about sold, expired and unclaimed listings !
+  - **Announcements**. Broadcast a message when new listing is added on the auction !
   - **Fees**. Take fees from players for adding items on the auction!
   - **Container Preview**. Preview content of shulker boxes and chests before purchase!
   - [**Listings Amount**](https://nightexpressdev.com/excellentshop/auction/listings-amount). Set how many listings players can add on the auction based on their rank or permissions!
