@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+<project xmlns="maven.apache.org"
+         xmlns:xsi="www.w3.org"
+         xsi:schemaLocation="maven.apache.org maven.apache.org">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>su.nightexpress.excellentshop</groupId>
@@ -33,19 +34,25 @@
     <distributionManagement>
         <repository>
             <id>nightexpress</id>
-            <url>https://repo.nightexpressdev.com/releases</url>
+            <url>repo.nightexpressdev.com</url>
         </repository>
     </distributionManagement>
 
     <repositories>
         <repository>
             <id>papermc</id>
-            <url>https://repo.papermc.io/repository/maven-public/</url>
+            <url>repo.papermc.io</url>
         </repository>
 
         <repository>
             <id>nightexpress-releases</id>
-            <url>https://repo.nightexpressdev.com/releases</url>
+            <url>repo.nightexpressdev.com</url>
+        </repository>
+
+        <!-- НОВЫЙ РЕПОЗИТОРИЙ ДЛЯ KYORI EVENT-API -->
+        <repository>
+            <id>kyori-repo</id>
+            <url>maven.daporkchop.net</url>
         </repository>
     </repositories>
 
